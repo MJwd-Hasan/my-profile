@@ -315,3 +315,62 @@ body{font-size:24px;line-height:1.6}
   .social-links a{font-size:1.15rem}
   .site-footer p,.site-footer>span:not(.droid){font-size:.95rem}
 }
+
+
+/* Final legibility boost: no tiny UI copy or miniature CTA labels. */
+body{font-size:26px;line-height:1.62}
+.site-header nav a,.nav-contact{font-size:.82rem;line-height:1.5}
+.brand{font-size:1.4rem}
+.welcome{font-size:1rem;line-height:1.8}
+.eyebrow{font-size:.78rem;line-height:1.6}
+.button{
+  font-size:1rem;
+  line-height:1.5;
+  padding:16px 22px;
+  letter-spacing:.035em;
+}
+.hero-meta{font-size:.67rem;line-height:1.7}
+.art-caption,.scroll-cue{font-size:.68rem;line-height:1.6}
+.section-kicker{font-size:.82rem;line-height:1.6}
+.project-number{font-size:.9rem}
+.project-type{font-size:.72rem;line-height:1.5}
+.project-card h3{font-size:1.35rem;line-height:1.55}
+.project-subtitle{font-size:1.28rem!important;line-height:1.5}
+.skill-tags span,.project-tags span{font-size:1.2rem;line-height:1.45}
+.project-links a{font-size:1.28rem;line-height:1.5}
+.toolkit-grid h3{font-size:1rem;line-height:1.6}
+.timeline-date,.recognition-year{font-size:.72rem;line-height:1.5}
+.timeline-item h3{font-size:1rem;line-height:1.65}
+.recognition-grid h3{font-size:.9rem;line-height:1.65}
+.education-list h3{font-size:1rem;line-height:1.65}
+.site-footer p,.site-footer>span:not(.droid){font-size:1.15rem;line-height:1.5}
+
+@media(max-width:850px){
+  .site-header nav a,.nav-contact{font-size:.76rem}
+  .button{font-size:.98rem}
+  .section-kicker{font-size:.78rem}
+  .project-type{font-size:.68rem}
+}
+@media(max-width:600px){
+  body{font-size:23px;line-height:1.58}
+  .site-header nav a{font-size:.69rem}
+  .nav-contact{font-size:.7rem}
+  .brand{font-size:1.15rem}
+  .welcome{font-size:.86rem}
+  .eyebrow{font-size:.68rem}
+  .button{font-size:.94rem;padding:15px 18px;line-height:1.45}
+  .hero-meta{font-size:.61rem}
+  .art-caption,.scroll-cue{font-size:.61rem}
+  .section-kicker{font-size:.74rem}
+  .project-type{font-size:.62rem}
+  .project-number{font-size:.78rem}
+  .project-card h3{font-size:1.15rem}
+  .project-subtitle{font-size:1.18rem!important}
+  .project-links a{font-size:1.18rem}
+  .toolkit-grid h3{font-size:.95rem}
+  .timeline-date,.recognition-year{font-size:.64rem}
+  .timeline-item h3{font-size:.9rem}
+  .recognition-grid h3{font-size:.82rem}
+  .education-list h3{font-size:.92rem}
+  .site-footer p,.site-footer>span:not(.droid){font-size:1.05rem}
+}
