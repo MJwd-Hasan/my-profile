@@ -233,3 +233,85 @@ h1 span{color:var(--cream);text-shadow:2px 2px 0 rgba(255,34,156,.24),0 0 17px r
   .site-footer{padding:20px 17px;flex-wrap:wrap}
   .site-footer p{order:3;width:100%}
 }
+
+
+/* Readability pass: keep the space-opera palette, make every content tier easier to read. */
+body{font-size:24px;line-height:1.6}
+.site-header nav a,.nav-contact{font-size:.68rem}
+.brand{font-size:1.25rem}
+.welcome{font-size:.88rem;line-height:1.8}
+.eyebrow{font-size:.68rem}
+.button{font-size:.7rem}
+.hero-meta{font-size:.58rem}
+.art-caption,.scroll-cue{font-size:.57rem}
+.section-kicker{font-size:.72rem}
+.intro h2,.section-wrap>h2,.section-heading h2,.contact-section h2{font-size:clamp(1.9rem,3.7vw,3.05rem);line-height:1.45}
+.intro-content p,.section-heading>p,.project-card>p,.contact-section>p{font-size:1.42rem;line-height:1.5}
+.skill-tags span,.project-tags span{font-size:1.12rem;padding:5px 11px}
+.project-number{font-size:.78rem}
+.project-type{font-size:.58rem}
+.project-card h3{font-size:1.18rem;line-height:1.55}
+.project-subtitle{font-size:1.15rem!important}
+.project-card>p:not(.project-subtitle){font-size:1.28rem;line-height:1.48}
+.project-links a{font-size:1.16rem}
+.toolkit-grid h3{font-size:.88rem;line-height:1.7}
+.toolkit-grid p{font-size:1.32rem;line-height:1.5}
+.timeline-date,.recognition-year{font-size:.58rem}
+.timeline-item h3{font-size:.9rem;line-height:1.7}
+.timeline-item p,.timeline-item ul,.recognition-grid p{font-size:1.25rem;line-height:1.5}
+.recognition-grid h3{font-size:.78rem;line-height:1.7}
+.education-list h3{font-size:.9rem;line-height:1.7}
+.education-list p,.education-meta{font-size:1.25rem;line-height:1.5}
+.education-meta span{font-size:1.12rem}
+.email-link{font-size:1.55rem}
+.social-links a{font-size:1.3rem}
+.site-footer p,.site-footer>span:not(.droid){font-size:1.05rem}
+
+/* Center both requested sections as complete, balanced content blocks. */
+.skills-section,.education-section{
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;
+}
+.skills-section>.section-kicker,.education-section>.section-kicker{width:100%;text-align:center}
+.skills-section>h2,.education-section>h2{width:100%;text-align:center;margin:0}
+.toolkit-grid,.education-list{width:min(920px,100%);margin-inline:auto}
+.toolkit-grid>div{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.education-list article{justify-content:center;align-items:center;flex-direction:column;text-align:center;gap:7px}
+.education-meta{text-align:center;align-items:center}
+
+/* Larger type at tablet and phone sizes too; no tiny pixel-font labels. */
+@media(max-width:850px){
+  .site-header nav a,.nav-contact{font-size:.61rem}
+  .section-kicker{font-size:.68rem}
+  .project-type{font-size:.55rem}
+}
+@media(max-width:600px){
+  body{font-size:22px}
+  .site-header nav a{font-size:.52rem}
+  .nav-contact{font-size:.55rem}
+  .welcome{font-size:.72rem}
+  .eyebrow{font-size:.57rem}
+  .button{font-size:.62rem}
+  .hero-meta{font-size:.5rem}
+  .art-caption,.scroll-cue{font-size:.5rem}
+  .section-kicker{font-size:.64rem}
+  .intro h2,.section-wrap>h2,.section-heading h2,.contact-section h2{font-size:clamp(1.6rem,7vw,2.25rem);line-height:1.5}
+  .intro-content p,.section-heading>p,.project-card>p,.contact-section>p{font-size:1.28rem}
+  .project-type{font-size:.5rem}
+  .project-number{font-size:.68rem}
+  .project-card h3{font-size:1rem}
+  .project-subtitle{font-size:1.06rem!important}
+  .project-card>p:not(.project-subtitle){font-size:1.18rem}
+  .project-links a{font-size:1.08rem}
+  .toolkit-grid h3{font-size:.8rem}
+  .toolkit-grid p{font-size:1.2rem}
+  .timeline-date,.recognition-year{font-size:.52rem}
+  .timeline-item h3{font-size:.78rem}
+  .timeline-item p,.timeline-item ul,.recognition-grid p{font-size:1.15rem}
+  .recognition-grid h3{font-size:.72rem}
+  .education-list h3{font-size:.78rem}
+  .education-list p,.education-meta{font-size:1.15rem}
+  .education-meta span{font-size:1.05rem}
+  .email-link{font-size:1.2rem}
+  .social-links a{font-size:1.15rem}
+  .site-footer p,.site-footer>span:not(.droid){font-size:.95rem}
+}
