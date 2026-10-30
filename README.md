@@ -24,7 +24,7 @@ Open `index.html` in a browser. No build step is required.
 
 - Email: mohammadjawadhasan@gmail.com
 - [GitHub](https://github.com/MJwd-Hasan)
-- [LinkedIn](https://www.linkedin.com/in/mohammad-jawad-hasan/)
+- [LinkedIn](https://www.linkedin.com/in/mohammad-jawad-hasan-744624317/)
 
 ---
 © 2026 Mohammad Jawad Hasan
