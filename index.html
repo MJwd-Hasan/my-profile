@@ -3,20 +3,35 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080b16">
+  <meta name="theme-color" content="#000000">
   <meta name="description" content="Mohammad Jawad Hasan — Applied Statistics and Data Science student, researcher, and machine learning practitioner.">
   <title>Mohammad Jawad Hasan | Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Almendra+SC&family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
-  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-bar"></span></div>
+
+  <div class="stars" aria-hidden="true">
+    <i class="star"></i><i class="star"></i><i class="star"></i><i class="star"></i><i class="star"></i>
+    <i class="star"></i><i class="star"></i><i class="star"></i><i class="star"></i><i class="star"></i>
+    <i class="star"></i><i class="star"></i><i class="star"></i><i class="star"></i><i class="star"></i>
+    <i class="star"></i><i class="star"></i><i class="star"></i><i class="star"></i><i class="star"></i>
+    <i class="star"></i><i class="star"></i><i class="star"></i><i class="star"></i><i class="star"></i>
+  </div>
+  <div class="shooting-stars" aria-hidden="true"><i></i><i></i><i></i></div>
+
   <header class="site-header">
-    <a class="brand" href="#home">MJH<span>.</span></a>
+    <a class="brand" href="#home" aria-label="Back to top">MJH<span>.</span></a>
     <nav aria-label="Main navigation">
-      <a href="#about">About</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#education">Education</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#toolkit">Toolkit</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
     </nav>
     <a class="nav-contact" href="mailto:mohammadjawadhasan@gmail.com">Let's connect <span>↗</span></a>
   </header>
@@ -24,6 +39,7 @@
   <main>
     <section class="hero section-wrap" id="home">
       <div class="hero-copy">
+        <p class="welcome">Pushing Through Every Possibility....</p>
         <p class="eyebrow"><span class="status-dot"></span> APPLIED STATISTICS · DATA SCIENCE · RESEARCH</p>
         <h1>Mohammad<br><span>Jawad Hasan</span></h1>
         <p class="hero-lead">I turn statistical thinking into practical data products, interpretable machine learning, and research-driven solutions.</p>
@@ -33,15 +49,16 @@
         </div>
         <div class="hero-meta"><span>Dhaka, Bangladesh</span><span>University of Dhaka</span><span>ISRT · ASDS</span></div>
       </div>
-      <div class="hero-art" aria-label="Abstract mathematical illustration">
+      <div class="hero-art" aria-label="An animated orbital illustration">
         <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="orbit orbit-c"></div>
         <div class="orbit-core"><span>∑</span><small>DATA<br>IN MOTION</small></div>
         <span class="float-tag tag-one">P(X | Y)</span><span class="float-tag tag-two">∇ L(θ)</span><span class="float-tag tag-three">μ · σ²</span>
         <span class="art-caption">Curiosity, quantified.</span>
       </div>
+      <a class="scroll-cue" href="#about" aria-label="Scroll to about section">SCROLL TO EXPLORE <span>↓</span></a>
     </section>
 
-    <section class="intro section-wrap" id="about">
+    <section class="intro section-wrap reveal" id="about">
       <div class="section-kicker">01 / ABOUT</div>
       <div class="intro-content">
         <h2>Grounded in statistics.<br><span>Driven by possibilities.</span></h2>
@@ -51,10 +68,10 @@
       </div>
     </section>
 
-    <section class="projects-section section-wrap" id="projects">
+    <section class="projects-section section-wrap reveal" id="projects">
       <div class="section-heading"><div><div class="section-kicker">02 / SELECTED WORK</div><h2>Projects &amp; research<span>.</span></h2></div><p>A selection of research, open-source engineering, and applied modeling.</p></div>
       <div class="project-grid">
-        <article class="project-card featured">
+        <article class="project-card featured reveal">
           <div class="project-top"><span class="project-number">01</span><span class="project-type">OPEN SOURCE · PYTHON</span></div>
           <div class="project-symbol">⌘</div>
           <h3>Adaptive Greedy Search</h3>
@@ -63,7 +80,7 @@
           <div class="project-tags"><span>Optimization</span><span>Surrogate Models</span><span>Python</span></div>
           <div class="project-links"><a href="https://github.com/MJwd-Hasan/adaptive-greedy-search" target="_blank" rel="noreferrer">GitHub repository ↗</a><a href="https://pypi.org/project/adaptive-greedy-search/" target="_blank" rel="noreferrer">PyPI package ↗</a></div>
         </article>
-        <article class="project-card">
+        <article class="project-card reveal">
           <div class="project-top"><span class="project-number">02</span><span class="project-type">RESEARCH · ISRC 2026</span></div>
           <div class="project-symbol">⌁</div>
           <h3>Explainable ML for Child Malnutrition</h3>
@@ -72,7 +89,7 @@
           <div class="project-tags"><span>MICS</span><span>Machine Learning</span><span>SHAP</span><span>Public Health</span></div>
           <div class="project-links"><a href="https://github.com/MJwd-Hasan/wasting_mics" target="_blank" rel="noreferrer">GitHub repository ↗</a></div>
         </article>
-        <article class="project-card">
+        <article class="project-card reveal">
           <div class="project-top"><span class="project-number">03</span><span class="project-type">STATISTICAL MODELING</span></div>
           <div class="project-symbol">⌂</div>
           <h3>Ames House Price Prediction</h3>
@@ -81,7 +98,7 @@
           <div class="project-tags"><span>Regression</span><span>Feature Engineering</span><span>Web App</span></div>
           <div class="project-links"><a href="https://github.com/MJwd-Hasan/AMES-Project-Everything" target="_blank" rel="noreferrer">GitHub project ↗</a><a href="https://github.com/MJwd-Hasan/ames-webapp-files" target="_blank" rel="noreferrer">Web app files ↗</a></div>
         </article>
-        <article class="project-card">
+        <article class="project-card reveal">
           <div class="project-top"><span class="project-number">04</span><span class="project-type">SURVIVAL ANALYSIS</span></div>
           <div class="project-symbol">◷</div>
           <h3>Cirrhosis Analysis &amp; Patient Outcome Prediction</h3>
@@ -93,47 +110,92 @@
       </div>
     </section>
 
-    <section class="skills-section section-wrap">
+    <section class="skills-section section-wrap reveal" id="toolkit">
       <div class="section-kicker">03 / TOOLKIT</div><h2>What I work with<span>.</span></h2>
       <div class="toolkit-grid">
-        <div><h3>Machine learning</h3><p>XGBoost · LightGBM · CatBoost · Random Forest · Scikit-learn · Explainable AI</p></div>
-        <div><h3>Deep learning</h3><p>PyTorch · Neural networks · Backpropagation · Custom loss functions · Regularization</p></div>
-        <div><h3>Statistics &amp; mathematics</h3><p>GLMs · Regression analysis · Linear algebra · Multivariable calculus · Optimization</p></div>
-        <div><h3>Data &amp; visualization</h3><p>Python · Pandas · NumPy · Statistical analysis · Exploratory data analysis · Dashboards</p></div>
-        <div><h3>Application development</h3><p>FastAPI · React · Full-stack applications · Interactive analytical tools</p></div>
-        <div><h3>Research practice</h3><p>Survey data · Statistical inference · Model evaluation · Cross-validation · Survival analysis</p></div>
+        <div class="glass-panel reveal"><h3>Machine learning</h3><p>XGBoost · LightGBM · CatBoost · Random Forest · Scikit-learn · Explainable AI</p></div>
+        <div class="glass-panel reveal"><h3>Deep learning</h3><p>PyTorch · Neural networks · Backpropagation · Custom loss functions · Regularization</p></div>
+        <div class="glass-panel reveal"><h3>Statistics &amp; mathematics</h3><p>GLMs · Regression analysis · Linear algebra · Multivariable calculus · Optimization</p></div>
+        <div class="glass-panel reveal"><h3>Data &amp; visualization</h3><p>Python · Pandas · NumPy · Statistical analysis · Exploratory data analysis · Dashboards</p></div>
+        <div class="glass-panel reveal"><h3>Application development</h3><p>FastAPI · React · Full-stack applications · Interactive analytical tools</p></div>
+        <div class="glass-panel reveal"><h3>Research practice</h3><p>Survey data · Statistical inference · Model evaluation · Cross-validation · Survival analysis</p></div>
       </div>
     </section>
 
-    <section class="experience-section section-wrap" id="experience">
+    <section class="experience-section section-wrap reveal" id="experience">
       <div class="section-heading"><div><div class="section-kicker">04 / LEADERSHIP &amp; RECOGNITION</div><h2>Beyond the models<span>.</span></h2></div><p>Building communities, organizing competitions, and learning through collaboration.</p></div>
       <div class="timeline">
-        <article class="timeline-item"><div class="timeline-date">AUG 2026 — PRESENT</div><div><h3>General Secretary · IASDS Students’ Club</h3><p>University of Dhaka</p><ul><li>Directed strategic and technical execution of Insight 2.0, an inter-departmental tournament with 101 competing teams.</li><li>Previously served as IT Executive (Aug 2025 – Aug 2026), supporting technical infrastructure, dataset pipelines, and automated evaluation workflows.</li><li>Managed a team of 30+ executives and sub-executives and helped organize flagship cultural events.</li></ul></div></article>
-        <article class="timeline-item"><div class="timeline-date">2021 — 2022</div><div><h3>Vice-President, Administration · Notre Dame Debating Club</h3><p>Notre Dame College, Dhaka</p><ul><li>Organized the 33rd NDDC Nationals, welcoming over 1,500 visitors.</li><li>Secured BDT 200K in corporate sponsorship from NRBC Bank and coordinated the 32nd Nationals post-COVID.</li></ul></div></article>
+        <article class="timeline-item glass-panel reveal"><div class="timeline-date">AUG 2026 — PRESENT</div><div><h3>General Secretary · IASDS Students’ Club</h3><p>University of Dhaka</p><ul><li>Directed strategic and technical execution of Insight 2.0, an inter-departmental tournament with 101 competing teams.</li><li>Previously served as IT Executive (Aug 2025 – Aug 2026), supporting technical infrastructure, dataset pipelines, and automated evaluation workflows.</li><li>Managed a team of 30+ executives and sub-executives and helped organize flagship cultural events.</li></ul></div></article>
+        <article class="timeline-item glass-panel reveal"><div class="timeline-date">2021 — 2022</div><div><h3>Vice-President, Administration · Notre Dame Debating Club</h3><p>Notre Dame College, Dhaka</p><ul><li>Organized the 33rd NDDC Nationals, welcoming over 1,500 visitors.</li><li>Secured BDT 200K in corporate sponsorship from NRBC Bank and coordinated the 32nd Nationals post-COVID.</li></ul></div></article>
       </div>
       <div class="recognition-grid">
-        <div><span class="recognition-year">2025</span><h3>Lifetime Membership Award</h3><p>Notre Dame Debating Club</p></div>
-        <div><span class="recognition-year">2023</span><h3>Honorary Salutation Award</h3><p>Notre Dame Debating Club</p></div>
-        <div><span class="recognition-year">COMPETITIONS</span><h3>Selected achievements</h3><p>2nd place — Insight 2025 Datathon · Top 20 — BUBT AI Community Hackathon · Top 8 Grand Finalist — Idea Innovation (Interactive Cares) · 6th place — Idea Innovation (KUET Career Club)</p></div>
+        <div class="glass-panel reveal"><span class="recognition-year">2025</span><h3>Lifetime Membership Award</h3><p>Notre Dame Debating Club</p></div>
+        <div class="glass-panel reveal"><span class="recognition-year">2023</span><h3>Honorary Salutation Award</h3><p>Notre Dame Debating Club</p></div>
+        <div class="glass-panel reveal"><span class="recognition-year">COMPETITIONS</span><h3>Selected achievements</h3><p>2nd place — Insight 2025 Datathon · Top 20 — BUBT AI Community Hackathon · Top 8 Grand Finalist — Idea Innovation (Interactive Cares) · 6th place — Idea Innovation (KUET Career Club)</p></div>
       </div>
     </section>
 
-    <section class="education-section section-wrap" id="education">
+    <section class="education-section section-wrap reveal" id="education">
       <div class="section-kicker">05 / EDUCATION</div><h2>Academic foundation<span>.</span></h2>
       <div class="education-list">
-        <article><div><h3>University of Dhaka</h3><p>BSc in Applied Statistics and Data Science · Institute of Applied Statistics and Data Science</p></div><div class="education-meta"><strong>CGPA 3.45 / 4.00</strong><span>Sep 2023 — Present</span></div></article>
-        <article><div><h3>Notre Dame College, Dhaka</h3><p>Higher Secondary Certificate · Science · Dhaka Education Board</p></div><div class="education-meta"><strong>GPA 5.00 / 5.00</strong><span>2021 — 2022</span></div></article>
-        <article><div><h3>Ideal School and College</h3><p>Secondary School Certificate · Science · Dhaka Education Board</p></div><div class="education-meta"><strong>GPA 5.00 / 5.00</strong><span>2014 — 2020</span></div></article>
+        <article class="glass-panel reveal"><div><h3>University of Dhaka</h3><p>BSc in Applied Statistics and Data Science · Institute of Applied Statistics and Data Science</p></div><div class="education-meta"><strong>CGPA 3.45 / 4.00</strong><span>Sep 2023 — Present</span></div></article>
+        <article class="glass-panel reveal"><div><h3>Notre Dame College, Dhaka</h3><p>Higher Secondary Certificate · Science · Dhaka Education Board</p></div><div class="education-meta"><strong>GPA 5.00 / 5.00</strong><span>2021 — 2022</span></div></article>
+        <article class="glass-panel reveal"><div><h3>Ideal School and College</h3><p>Secondary School Certificate · Science · Dhaka Education Board</p></div><div class="education-meta"><strong>GPA 5.00 / 5.00</strong><span>2014 — 2020</span></div></article>
       </div>
     </section>
 
-    <section class="contact-section section-wrap" id="contact">
+    <section class="contact-section section-wrap reveal" id="contact">
       <div class="section-kicker">06 / FIND ME</div><h2>Let's build something<br><span>meaningful.</span></h2>
       <p>For research collaborations, technical discussions, or opportunities, feel free to reach out.</p>
       <a class="email-link" href="mailto:mohammadjawadhasan@gmail.com">mohammadjawadhasan@gmail.com ↗</a>
       <div class="social-links"><a href="https://github.com/MJwd-Hasan" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/mohammad-jawad-hasan/" target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
     </section>
   </main>
-  <footer class="site-footer"><a class="brand" href="#home">MJH<span>.</span></a><p>Designed around curiosity. Built with intention.</p><span>© 2026 Mohammad Jawad Hasan</span></footer>
+
+  <footer class="site-footer"><a class="brand" href="#home">MJH<span>.</span></a><p>Designed around curiosity. Built with intention.</p><span>© 2026 Mohammad Jawad Hasan</span><span class="droid" aria-hidden="true">👾</span></footer>
+
+  <script>
+    // Reveal sections and cards only when they enter the viewport.
+    const revealItems = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
+      revealItems.forEach((item) => revealObserver.observe(item));
+    } else {
+      revealItems.forEach((item) => item.classList.add('is-visible'));
+    }
+
+    // Highlight the current section in the retro navigation.
+    const navLinks = document.querySelectorAll('.site-header nav a');
+    const sections = document.querySelectorAll('main section[id]');
+    if ('IntersectionObserver' in window) {
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            navLinks.forEach((link) => {
+              link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+            });
+          }
+        });
+      }, { rootMargin: '-25% 0px -60% 0px' });
+      sections.forEach((section) => sectionObserver.observe(section));
+    }
+
+    // A thin hyperspace progress line follows the page scroll.
+    const progressBar = document.getElementById('scroll-progress-bar');
+    const updateProgress = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+      progressBar.style.width = progress + '%';
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  </script>
 </body>
 </html>
