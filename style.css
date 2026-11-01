@@ -438,3 +438,119 @@ body{font-size:26px;line-height:1.62}
   .js .reveal{animation:none!important;opacity:1!important;filter:none!important;transform:none!important}
   .site-header,.site-header nav a,.site-header nav a::after{transition:none!important}
 }
+
+
+/* Immersive scroll world: a continuous 3D environment that responds to page travel. */
+:root{
+  --journey:0;
+  --journey-x:0px;
+  --journey-y:0px;
+  --journey-spin:0deg;
+  --journey-speed:0;
+  --section-focus:0;
+}
+body{isolation:isolate;background:#02030a}
+.stars{z-index:-3}
+.scroll-world{
+  position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;
+  perspective:1100px;isolation:isolate;
+  background:
+    radial-gradient(ellipse at 50% 45%,rgba(15,32,55,.28),transparent 52%),
+    radial-gradient(ellipse at 50% 100%,rgba(19,7,29,.42),transparent 55%);
+}
+.world-aura{
+  position:absolute;width:min(72vw,900px);aspect-ratio:1;left:50%;top:48%;
+  border-radius:50%;transform:translate3d(calc(-50% + var(--journey-x)),calc(-50% + var(--journey-y)),0) scale(calc(1 + var(--journey)*.24));
+  background:radial-gradient(circle,rgba(30,139,171,.13) 0%,rgba(104,31,117,.08) 30%,transparent 69%);
+  filter:blur(12px);will-change:transform;
+}
+.world-grid{
+  position:absolute;left:-50%;right:-50%;height:68vh;bottom:-30vh;
+  transform:rotateX(73deg) translateY(calc(var(--journey)*-12vh)) translateZ(-120px);
+  transform-origin:center top;
+  background-image:linear-gradient(rgba(56,248,248,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(56,248,248,.14) 1px,transparent 1px);
+  background-size:62px 62px;
+  mask-image:linear-gradient(to bottom,transparent,black 24%,black 72%,transparent);
+  opacity:.22;will-change:transform;
+}
+.world-ring{
+  position:absolute;left:50%;top:47%;border:1px solid rgba(56,248,248,.2);
+  border-radius:50%;transform-style:preserve-3d;will-change:transform;
+  box-shadow:0 0 35px rgba(56,248,248,.035),inset 0 0 35px rgba(255,34,156,.025);
+}
+.world-ring::before,.world-ring::after{
+  content:"";position:absolute;inset:9%;border:1px solid rgba(255,34,156,.16);
+  border-radius:50%;transform:rotateX(65deg) rotateY(25deg);
+}
+.world-ring::after{inset:20%;border-color:rgba(56,248,248,.18);transform:rotateY(68deg) rotateX(18deg)}
+.world-ring.ring-one{
+  width:min(74vw,850px);height:min(74vw,850px);
+  transform:translate3d(-50%,-50%,0) rotateX(68deg) rotateZ(calc(-24deg + var(--journey)*110deg));
+}
+.world-ring.ring-two{
+  width:min(58vw,660px);height:min(58vw,660px);border-color:rgba(255,34,156,.17);
+  transform:translate3d(-50%,-50%,0) rotateX(28deg) rotateY(calc(52deg + var(--journey)*-90deg)) rotateZ(24deg);
+}
+.world-ring.ring-three{
+  width:min(42vw,500px);height:min(42vw,500px);border-style:dashed;border-color:rgba(56,248,248,.16);
+  transform:translate3d(-50%,-50%,0) rotateX(82deg) rotateY(35deg) rotateZ(calc(var(--journey)*-150deg));
+}
+.world-core{
+  position:absolute;left:50%;top:47%;width:clamp(90px,13vw,180px);aspect-ratio:1;border-radius:50%;
+  transform:translate3d(calc(-50% + var(--journey-x)*.2),calc(-50% + var(--journey-y)*.2),0) scale(calc(.78 + var(--journey)*.25));
+  background:radial-gradient(circle at 34% 28%,rgba(95,230,255,.32),rgba(16,42,67,.18) 30%,rgba(8,8,18,.06) 68%,transparent 72%);
+  box-shadow:0 0 80px rgba(56,248,248,.11),0 0 160px rgba(255,34,156,.06);
+  filter:blur(.2px);will-change:transform;
+}
+.world-core::before,.world-core::after{
+  content:"";position:absolute;inset:-20%;border:1px solid rgba(56,248,248,.24);border-radius:50%;
+  transform:rotateX(68deg) rotateZ(calc(var(--journey)*190deg));
+}
+.world-core::after{inset:-36%;border-color:rgba(255,34,156,.2);transform:rotateY(68deg) rotateZ(calc(var(--journey)*-130deg))}
+.world-vignette{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.38) 100%);
+}
+main,.site-header,.site-footer{position:relative;z-index:1}
+.site-header{background:rgba(0,0,0,.48);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(56,248,248,.1)}
+main section[id]{position:relative;transform-style:preserve-3d}
+main section[id]:not(.hero){
+  transform-origin:50% 48%;
+  animation:section-orbit-in both linear;
+  animation-timeline:view();
+  animation-range:entry 0% entry 42%;
+}
+@keyframes section-orbit-in{
+  from{opacity:.28;filter:blur(9px);transform:perspective(1300px) translate3d(0,7vh,-100px) rotateX(3deg) scale(.94)}
+  to{opacity:1;filter:blur(0);transform:perspective(1300px) translate3d(0,0,0) rotateX(0) scale(1)}
+}
+.section-kicker{letter-spacing:.13em}
+.project-card,.glass-panel{backface-visibility:hidden;transform-style:preserve-3d}
+.project-card{position:relative;overflow:hidden}
+.project-card::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:0;
+  background:linear-gradient(115deg,transparent 15%,rgba(56,248,248,.08) 48%,transparent 72%);
+  transform:translateX(-110%);transition:transform .8s ease,opacity .35s ease;
+}
+.project-card:hover::before{opacity:1;transform:translateX(110%)}
+.hero-art{filter:drop-shadow(0 0 35px rgba(56,248,248,.08))}
+.hero-art .orbit{will-change:transform}
+.scroll-progress{height:3px;background:rgba(255,255,255,.035)}
+.scroll-progress span{background:linear-gradient(90deg,#38f8f8,#ff229c,#ffe0b8);box-shadow:0 0 18px rgba(56,248,248,.7)}
+.site-header nav a.active{color:var(--cyan);text-shadow:0 0 12px rgba(56,248,248,.45)}
+.site-header nav a.active::after{box-shadow:0 0 12px var(--cyan)}
+.scroll-cue{animation:cue-pulse 2.2s ease-in-out infinite}
+@keyframes cue-pulse{50%{opacity:.48;transform:translateY(4px)}}
+@media(max-width:700px){
+  .world-grid{opacity:.12;background-size:42px 42px}
+  .world-ring.ring-one{width:115vw;height:115vw}
+  .world-ring.ring-two{width:88vw;height:88vw}
+  .world-ring.ring-three{width:64vw;height:64vw}
+  .world-core{width:120px}
+  main section[id]:not(.hero){animation-range:entry 0% entry 28%}
+}
+@media(prefers-reduced-motion:reduce){
+  .world-ring,.world-grid,.world-core,.world-aura{transform:none!important}
+  main section[id]:not(.hero){animation:none!important;opacity:1!important;filter:none!important}
+  .scroll-cue{animation:none}
+}
