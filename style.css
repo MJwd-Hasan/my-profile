@@ -374,3 +374,67 @@ body{font-size:26px;line-height:1.62}
   .education-list h3{font-size:.92rem}
   .site-footer p,.site-footer>span:not(.droid){font-size:1.05rem}
 }
+
+
+/* Cinematic, scroll-linked motion inspired by editorial scrollytelling.
+   Native view timelines make reveals follow the user's scroll in both directions;
+   the IntersectionObserver script above remains the compatibility fallback. */
+.scroll-progress span{
+  width:100%;
+  transform:scaleX(var(--page-progress,0));
+  transform-origin:left center;
+  transition:none;
+  will-change:transform;
+}
+.hero-art{
+  transform:translate3d(0,var(--hero-drift,0px),0);
+  transition:transform .08s linear;
+  will-change:transform;
+}
+.site-header{
+  transition:background .35s ease, border-color .35s ease, backdrop-filter .35s ease;
+}
+.site-header nav a{
+  position:relative;
+  transition:color .25s ease,text-shadow .25s ease;
+}
+.site-header nav a::after{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:-8px;
+  height:1px;
+  background:linear-gradient(90deg,var(--cyan),var(--pink));
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .3s ease;
+}
+.site-header nav a:hover::after,
+.site-header nav a.active::after{transform:scaleX(1)}
+.section-wrap{scroll-margin-top:105px}
+.project-card,.glass-panel{
+  transition:transform .55s cubic-bezier(.2,.75,.25,1),border-color .35s ease,box-shadow .35s ease;
+}
+@keyframes scroll-cinematic-reveal{
+  from{opacity:0;filter:blur(12px);transform:translate3d(0,64px,0) scale(.965)}
+  to{opacity:1;filter:blur(0);transform:translate3d(0,0,0) scale(1)}
+}
+@supports (animation-timeline:view()){
+  .js .reveal{
+    opacity:1;
+    filter:none;
+    transform:none;
+    animation:scroll-cinematic-reveal both linear;
+    animation-timeline:view();
+    animation-range:entry 0% entry 48%;
+  }
+  .js .reveal.is-visible{opacity:1;filter:none;transform:none}
+}
+@media(hover:hover) and (pointer:fine){
+  .project-card:hover{transform:translateY(-8px) scale(1.012)}
+  .glass-panel:hover{border-color:rgba(56,248,248,.42)}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-art{transform:none!important;transition:none!important}
+  .js .reveal{animation:none!important;opacity:1!important;filter:none!important;transform:none!important}
+  .site-header,.site-header nav a,.site-header nav a::after{transition:none!important}
+}
