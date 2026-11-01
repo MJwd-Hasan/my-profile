@@ -155,9 +155,12 @@
   <footer class="site-footer"><a class="brand" href="#home">MJH<span>.</span></a><p>Designed around curiosity. Built with intention.</p><span>© 2026 Mohammad Jawad Hasan</span><span class="droid" aria-hidden="true">👾</span></footer>
 
   <script>
-    // Reveal sections and cards only when they enter the viewport.
+    // Scroll choreography: reversible reveals, active navigation and lightweight parallax.
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const revealItems = document.querySelectorAll('.reveal');
-    if ('IntersectionObserver' in window) {
+    const supportsViewTimeline = CSS.supports('animation-timeline: view()');
+
+    if ('IntersectionObserver' in window && !supportsViewTimeline && !reduceMotion) {
       const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -165,14 +168,14 @@
             observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
       revealItems.forEach((item) => revealObserver.observe(item));
-    } else {
+    } else if (!supportsViewTimeline || reduceMotion) {
       revealItems.forEach((item) => item.classList.add('is-visible'));
     }
 
-    // Highlight the current section in the retro navigation.
-    const navLinks = document.querySelectorAll('.site-header nav a');
+    // Keep the navigation in sync with the section occupying the reading area.
+    const navLinks = [...document.querySelectorAll('.site-header nav a')];
     const sections = document.querySelectorAll('main section[id]');
     if ('IntersectionObserver' in window) {
       const sectionObserver = new IntersectionObserver((entries) => {
@@ -183,19 +186,35 @@
             });
           }
         });
-      }, { rootMargin: '-25% 0px -60% 0px' });
+      }, { rootMargin: '-32% 0px -54% 0px', threshold: 0 });
       sections.forEach((section) => sectionObserver.observe(section));
     }
 
-    // A thin hyperspace progress line follows the page scroll.
+    // One request per paint keeps scroll-linked effects smooth on long pages.
     const progressBar = document.getElementById('scroll-progress-bar');
-    const updateProgress = () => {
-      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
-      progressBar.style.width = progress + '%';
+    const heroArt = document.querySelector('.hero-art');
+    let ticking = false;
+    const paintScrollState = () => {
+      const root = document.documentElement;
+      const maxScroll = root.scrollHeight - window.innerHeight;
+      const progress = maxScroll > 0 ? Math.min(1, Math.max(0, window.scrollY / maxScroll)) : 0;
+      root.style.setProperty('--page-progress', progress);
+      if (progressBar) progressBar.style.transform = 'scaleX(' + progress + ')';
+      if (heroArt && !reduceMotion) {
+        const drift = Math.min(72, Math.max(-24, window.scrollY * 0.105));
+        heroArt.style.setProperty('--hero-drift', drift + 'px');
+      }
+      ticking = false;
     };
-    window.addEventListener('scroll', updateProgress, { passive: true });
-    updateProgress();
+    const requestScrollPaint = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(paintScrollState);
+      }
+    };
+    window.addEventListener('scroll', requestScrollPaint, { passive: true });
+    window.addEventListener('resize', requestScrollPaint, { passive: true });
+    paintScrollState();
   </script>
 </body>
 </html>
