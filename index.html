@@ -160,7 +160,8 @@
   <footer class="site-footer"><a class="brand" href="#home">MJH<span>.</span></a><p>Designed around curiosity. Built with intention.</p><span>© 2026 Mohammad Jawad Hasan</span><span class="droid" aria-hidden="true">👾</span></footer>
 
   <script>
-    // Scroll choreography: reversible section transitions and a continuous 3D world.
+    // Lightweight scroll behaviour: native smooth anchors, observer-based reveals,
+    // active navigation and a single requestAnimationFrame progress update.
     (() => {
       const root = document.documentElement;
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -168,9 +169,8 @@
       const navLinks = [...document.querySelectorAll('.site-header nav a')];
       const sections = [...document.querySelectorAll('main section[id]')];
       const revealItems = document.querySelectorAll('.reveal');
-      const supportsViewTimeline = CSS.supports('animation-timeline: view()');
 
-      if ('IntersectionObserver' in window && !supportsViewTimeline && !reduceMotion) {
+      if ('IntersectionObserver' in window && !reduceMotion) {
         const revealObserver = new IntersectionObserver((entries, observer) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -178,61 +178,52 @@
               observer.unobserve(entry.target);
             }
           });
-        }, { threshold: 0.1, rootMargin: '0px 0px -7% 0px' });
+        }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
         revealItems.forEach(item => revealObserver.observe(item));
-      } else if (!supportsViewTimeline || reduceMotion) {
+
+        const sectionObserver = new IntersectionObserver(entries => {
+          const visible = entries
+            .filter(entry => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          if (!visible) return;
+          navLinks.forEach(link => {
+            const active = link.hash === '#' + visible.target.id;
+            link.classList.toggle('active', active);
+            if (active) link.setAttribute('aria-current', 'location');
+            else link.removeAttribute('aria-current');
+          });
+        }, { rootMargin: '-30% 0px -55% 0px', threshold: [0, 0.15, 0.35, 0.6] });
+        sections.forEach(section => sectionObserver.observe(section));
+      } else {
         revealItems.forEach(item => item.classList.add('is-visible'));
       }
 
-      let activeSection = '';
-      const sectionObserver = new IntersectionObserver(entries => {
-        const visible = entries.filter(entry => entry.isIntersecting)
-          .sort((a,b) => b.intersectionRatio-a.intersectionRatio)[0];
-        if (!visible) return;
-        activeSection = visible.target.id;
-        navLinks.forEach(link => link.classList.toggle('active', link.hash === '#' + activeSection));
-        root.style.setProperty('--section-focus', String(Math.max(0, sections.indexOf(visible.target))));
-      }, { rootMargin: '-28% 0px -48% 0px', threshold: [0,.1,.25,.5,.75] });
-      sections.forEach(section => sectionObserver.observe(section));
-
-      let raf = 0, previousY = window.scrollY, previousTime = performance.now(), velocity = 0;
-      const clamp = (value,min,max) => Math.min(max,Math.max(min,value));
-      const paint = now => {
-        const y = window.scrollY;
-        const max = Math.max(1, root.scrollHeight - window.innerHeight);
-        const progress = clamp(y/max,0,1);
-        const dt = Math.max(12, now-previousTime);
-        const instantaneous = clamp((y-previousY)/dt,-3,3);
-        velocity = velocity*.78 + instantaneous*.22;
-        root.style.setProperty('--journey', progress.toFixed(4));
-        root.style.setProperty('--page-progress', progress.toFixed(4));
-        root.style.setProperty('--journey-spin', (progress*360).toFixed(2)+'deg');
-        root.style.setProperty('--journey-speed', Math.abs(velocity).toFixed(3));
-        root.style.setProperty('--journey-x', (Math.sin(progress*Math.PI*4)*22).toFixed(2)+'px');
-        root.style.setProperty('--journey-y', (Math.cos(progress*Math.PI*3)*18).toFixed(2)+'px');
-        if (progressBar) progressBar.style.transform = 'scaleX('+progress+')';
-        const heroArt = document.querySelector('.hero-art');
-        if (heroArt && !reduceMotion) {
-          const heroProgress = clamp(y/Math.max(1,window.innerHeight),0,1);
-          heroArt.style.setProperty('--hero-drift',(heroProgress*78)+'px');
+      let frame = 0;
+      const updateProgress = () => {
+        const maxScroll = Math.max(1, root.scrollHeight - window.innerHeight);
+        const progress = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+        if (progressBar) {
+          progressBar.style.transform = 'scaleX(' + progress.toFixed(4) + ')';
         }
-        previousY=y; previousTime=now; raf=0;
+        frame = 0;
       };
-      const requestPaint = () => {
-        if (!raf) raf = requestAnimationFrame(paint);
+      const requestProgressUpdate = () => {
+        if (!frame) frame = window.requestAnimationFrame(updateProgress);
       };
-      window.addEventListener('scroll',requestPaint,{passive:true});
-      window.addEventListener('resize',requestPaint,{passive:true});
-      window.addEventListener('pageshow',requestPaint);
-      paint(performance.now());
+      window.addEventListener('scroll', requestProgressUpdate, { passive: true });
+      window.addEventListener('resize', requestProgressUpdate, { passive: true });
+      window.addEventListener('pageshow', requestProgressUpdate);
+      requestProgressUpdate();
 
-      // Restore the correct navigation state when a deep link is loaded.
       const initial = location.hash && document.querySelector(location.hash);
       if (initial) {
-        activeSection = initial.id;
-        navLinks.forEach(link => link.classList.toggle('active',link.hash === location.hash));
+        navLinks.forEach(link => {
+          const active = link.hash === location.hash;
+          link.classList.toggle('active', active);
+          if (active) link.setAttribute('aria-current', 'location');
+        });
       }
     })();
-  </script>t>
+  </script>
 </body>
 </html>
