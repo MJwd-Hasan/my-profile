@@ -676,3 +676,37 @@ body { isolation: isolate; background: #000; }
   .stars .star, .shooting-stars i { animation: none !important; }
   .stars .star { opacity: .55; }
 }
+
+
+/* Center the hero introduction and its calls to action as a single composition. */
+.hero{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.hero-copy{
+  width:min(900px,100%);
+  margin-inline:auto;
+  text-align:center;
+}
+.hero-copy .welcome{
+  display:block;
+  margin-inline:auto;
+}
+.hero-copy .eyebrow{
+  justify-content:center;
+}
+.hero-copy h1{
+  text-align:center;
+}
+.hero-copy .hero-lead{
+  max-width:760px;
+  margin-inline:auto;
+  text-align:center;
+}
+.hero-copy .hero-actions{
+  justify-content:center;
+}
+.hero-copy .hero-meta{
+  justify-content:center;
+}
