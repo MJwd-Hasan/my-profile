@@ -2,6 +2,8 @@
 
 Personal portfolio highlighting my work in applied statistics, data science, machine learning research, open-source optimization, and analytical application development.
 
+[https://mohammadjawadhasan-portfolio.netlify.app/](Portfolio link)
+
 ## Featured work
 
 - **[Adaptive Greedy Search](https://github.com/MJwd-Hasan/adaptive-greedy-search)** — Python library for adaptive hyperparameter optimization. [PyPI](https://pypi.org/project/adaptive-greedy-search/)
